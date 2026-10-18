@@ -1,0 +1,9 @@
+name = "Vedoy Matcher"
+roles = ["frontend", "backend"]
+webhooks_path = "/webhooks/app/uninstalled"
+
+[commands]
+predev = "npm run setup"
+dev = "npx react-router dev"
+
+build = "npm run build"

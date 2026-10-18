@@ -1,0 +1,39 @@
+# Link to a real development app with Shopify CLI. The client ID is intentionally unset.
+client_id = ""
+name = "Vedoy Matcher"
+application_url = "http://127.0.0.1:5180"
+embedded = true
+
+[build]
+automatically_update_urls_on_dev = true
+include_config_on_deploy = true
+
+[access_scopes]
+scopes = "read_products,write_app_proxy"
+
+[auth]
+redirect_urls = ["http://127.0.0.1:5180/auth/callback"]
+
+[app_proxy]
+url = "/proxy/matcher"
+prefix = "apps"
+subpath = "vedoy-matcher"
+
+[webhooks]
+api_version = "2026-10"
+
+[[webhooks.subscriptions]]
+topics = ["app/uninstalled"]
+uri = "/webhooks/app/uninstalled"
+
+[[webhooks.subscriptions]]
+topics = ["app/scopes_update"]
+uri = "/webhooks/app/scopes_update"
+
+[[webhooks.subscriptions]]
+topics = ["products/create", "products/update", "products/delete"]
+uri = "/webhooks/products"
+
+[[webhooks.subscriptions]]
+compliance_topics = ["customers/data_request", "customers/redact", "shop/redact"]
+uri = "/webhooks/compliance"

@@ -1,0 +1,19 @@
+<vedoy-matcher
+  data-matcher="{{ block.settings.matcher_id | escape }}"
+  data-endpoint="{{ block.settings.proxy_path | escape }}"
+  data-root="{{ routes.root_url }}"
+  data-language="{{ request.locale.iso_code }}"
+  data-currency="{{ cart.currency.iso_code }}"
+  {{ block.shopify_attributes }}
+></vedoy-matcher>
+{% schema %}
+{
+  "name": "Vedoy Matcher",
+  "target": "section",
+  "javascript": "matcher.js",
+  "settings": [
+    {"type":"text","id":"matcher_id","label":"Matcher ID","info":"Copy the ID from the Vedoy Matcher app."},
+    {"type":"text","id":"proxy_path","label":"App proxy path","default":"/apps/vedoy-matcher","info":"Update only if you changed the proxy path in Shopify."}
+  ]
+}
+{% endschema %}
